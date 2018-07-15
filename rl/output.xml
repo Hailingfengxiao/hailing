@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20180708 16:19:53.016" generator="Robot 3.0.4 (Python 2.7.14 on win32)">
+<suite source="C:\Users\Auser\Desktop\mt" id="s1" name="Mt">
+<suite source="C:\Users\Auser\Desktop\mt\订单模块.txt" id="s1-s1" name="订单模块">
+<kw type="setup" name="setup" library="MT">
+<arguments>
+<arg>order_item</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>预置条件/搭建环境</arg>
+</arguments>
+<msg timestamp="20180708 16:19:53.379" level="INFO">预置条件/搭建环境</msg>
+<status status="PASS" endtime="20180708 16:19:53.379" starttime="20180708 16:19:53.379"></status>
+</kw>
+<kw name="Connect To Database" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>pymysql</arg>
+<arg>scott</arg>
+<arg>tester</arg>
+<arg>passwd</arg>
+<arg>${IP}</arg>
+<arg>3306</arg>
+<arg>utf8</arg>
+</arguments>
+<msg timestamp="20180708 16:19:53.470" level="INFO">Connecting using : pymysql.connect(db=scott, user=tester, passwd=passwd, host=192.168.239.128, port=3306, charset=utf8) </msg>
+<status status="PASS" endtime="20180708 16:19:53.485" starttime="20180708 16:19:53.379"></status>
+</kw>
+<kw name="Run" library="OperatingSystem">
+<doc>Runs the given command in the system and returns the output.</doc>
+<arguments>
+<arg>taskkill /f /im chromedriver.exe</arg>
+</arguments>
+<msg timestamp="20180708 16:19:53.530" level="INFO">Running command 'taskkill /f /im chromedriver.exe 2&gt;&amp;1'.</msg>
+<status status="PASS" endtime="20180708 16:19:53.820" starttime="20180708 16:19:53.485"></status>
+</kw>
+<kw name="Execute Sql String" library="DatabaseLibrary">
+<doc>Executes the sqlString as SQL commands. Useful to pass arguments to your sql. Set optional input `sansTran` to</doc>
+<arguments>
+<arg>DELETE \ FROM ${table_name};</arg>
+</arguments>
+<msg timestamp="20180708 16:19:53.820" level="INFO">Executing : Execute SQL String  |  DELETE  FROM order_item; </msg>
+<status status="PASS" endtime="20180708 16:19:53.822" starttime="20180708 16:19:53.820"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>1，打开网站</arg>
+</arguments>
+<msg timestamp="20180708 16:19:53.822" level="INFO">1，打开网站</msg>
+<status status="PASS" endtime="20180708 16:19:53.822" starttime="20180708 16:19:53.822"></status>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the given ``url``.</doc>
+<arguments>
+<arg>http://${IP}/mt</arg>
+<arg>chrome</arg>
+</arguments>
+<msg timestamp="20180708 16:19:53.823" level="INFO">Opening browser 'chrome' to base url 'http://192.168.239.128/mt'.</msg>
+<status status="PASS" endtime="20180708 16:19:56.578" starttime="20180708 16:19:53.823"></status>
+</kw>
+<status status="PASS" endtime="20180708 16:19:56.579" starttime="20180708 16:19:53.378"></status>
+</kw>
+<test id="s1-s1-t1" name="Case-01">
+<kw type="setup" name="case_setup">
+<kw name="Execute Sql String" library="DatabaseLibrary">
+<doc>Executes the sqlString as SQL commands. Useful to pass arguments to your sql. Set optional input `sansTran` to</doc>
+<arguments>
+<arg>DELETE \ FROM order_item</arg>
+</arguments>
+<msg timestamp="20180708 16:19:56.582" level="INFO">Executing : Execute SQL String  |  DELETE  FROM order_item </msg>
+<status status="PASS" endtime="20180708 16:19:56.584" starttime="20180708 16:19:56.582"></status>
+</kw>
+<status status="PASS" endtime="20180708 16:19:56.584" starttime="20180708 16:19:56.581"></status>
+</kw>
+<kw name="Row Count" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query the database and returns the number of rows from the query. Set</doc>
+<arguments>
+<arg>select * from scott.order_item where name='ipad' and quantity=123;</arg>
+</arguments>
+<assign>
+<var>${x}</var>
+</assign>
+<msg timestamp="20180708 16:19:56.586" level="INFO">Executing : Row Count  |  select * from scott.order_item where name='ipad' and quantity=123; </msg>
+<msg timestamp="20180708 16:19:56.587" level="INFO">${x} = 0</msg>
+<status status="PASS" endtime="20180708 16:19:56.587" starttime="20180708 16:19:56.585"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>str($x+1)</arg>
+</arguments>
+<assign>
+<var>${y}</var>
+</assign>
+<msg timestamp="20180708 16:19:56.590" level="INFO">${y} = 1</msg>
+<status status="PASS" endtime="20180708 16:19:56.590" starttime="20180708 16:19:56.588"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>2，点击自动化测试课程</arg>
+</arguments>
+<msg timestamp="20180708 16:19:56.592" level="INFO">2，点击自动化测试课程</msg>
+<status status="PASS" endtime="20180708 16:19:56.592" starttime="20180708 16:19:56.591"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click element identified by ``locator``.</doc>
+<arguments>
+<arg>link=自动化测试课程</arg>
+</arguments>
+<msg timestamp="20180708 16:19:56.593" level="INFO">Clicking element 'link=自动化测试课程'.</msg>
+<status status="PASS" endtime="20180708 16:19:56.719" starttime="20180708 16:19:56.593"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click element identified by ``locator``.</doc>
+<arguments>
+<arg>partial link=接口</arg>
+</arguments>
+<msg timestamp="20180708 16:19:56.720" level="INFO">Clicking element 'partial link=接口'.</msg>
+<status status="PASS" endtime="20180708 16:19:57.183" starttime="20180708 16:19:56.720"></status>
+</kw>
+<kw name="Click Link" library="SeleniumLibrary">
+<doc>Clicks a link identified by ``locator``.</doc>
+<arguments>
+<arg>自动化测试课程</arg>
+</arguments>
+<msg timestamp="20180708 16:19:57.185" level="INFO">Clicking link '自动化测试课程'.</msg>
+<status status="PASS" endtime="20180708 16:19:57.488" starttime="20180708 16:19:57.184"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>3，输入产品名称及数量</arg>
+</arguments>
+<msg timestamp="20180708 16:19:57.489" level="INFO">3，输入产品名称及数量</msg>
+<status status="PASS" endtime="20180708 16:19:57.490" starttime="20180708 16:19:57.489"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until element ``locator`` is visible.</doc>
+<arguments>
+<arg>id=pay</arg>
+</arguments>
+<status status="PASS" endtime="20180708 16:19:57.537" starttime="20180708 16:19:57.491"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=ProductName</arg>
+<arg>ipad</arg>
+</arguments>
+<msg timestamp="20180708 16:19:57.538" level="INFO">Typing text 'ipad' into text field 'id=ProductName'.</msg>
+<status status="PASS" endtime="20180708 16:19:57.828" starttime="20180708 16:19:57.538"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>name=Quantity</arg>
+<arg>123</arg>
+</arguments>
+<msg timestamp="20180708 16:19:57.829" level="INFO">Typing text '123' into text field 'name=Quantity'.</msg>
+<status status="PASS" endtime="20180708 16:19:57.928" starttime="20180708 16:19:57.828"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>4，点击提交</arg>
+</arguments>
+<msg timestamp="20180708 16:19:57.929" level="INFO">4，点击提交</msg>
+<status status="PASS" endtime="20180708 16:19:57.929" starttime="20180708 16:19:57.929"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click element identified by ``locator``.</doc>
+<arguments>
+<arg>id=submitBtn</arg>
+</arguments>
+<msg timestamp="20180708 16:19:57.930" level="INFO">Clicking element 'id=submitBtn'.</msg>
+<status status="PASS" endtime="20180708 16:20:03.024" starttime="20180708 16:19:57.930"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>5，确认提交成功</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.025" level="INFO">5，确认提交成功</msg>
+<status status="PASS" endtime="20180708 16:20:03.025" starttime="20180708 16:20:03.025"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>5.1，确认前端提示信息正确</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.026" level="INFO">5.1，确认前端提示信息正确</msg>
+<status status="PASS" endtime="20180708 16:20:03.026" starttime="20180708 16:20:03.026"></status>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<doc>Waits until ``text`` appears on current page.</doc>
+<arguments>
+<arg>你购买了ipad，一共123件</arg>
+</arguments>
+<status status="PASS" endtime="20180708 16:20:03.053" starttime="20180708 16:20:03.026"></status>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<doc>Verifies that current page contains ``text``.</doc>
+<arguments>
+<arg>你购买了ipad，一共123件</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.071" level="INFO">Current page contains text '你购买了ipad，一共123件'.</msg>
+<status status="PASS" endtime="20180708 16:20:03.071" starttime="20180708 16:20:03.054"></status>
+</kw>
+<kw name="Get Text" library="SeleniumLibrary">
+<doc>Returns the text value of element identified by ``locator``.</doc>
+<arguments>
+<arg>id=msg</arg>
+</arguments>
+<assign>
+<var>${x}</var>
+</assign>
+<msg timestamp="20180708 16:20:03.133" level="INFO">${x} = 你购买了ipad，一共123件。</msg>
+<status status="PASS" endtime="20180708 16:20:03.133" starttime="20180708 16:20:03.072"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${x}</arg>
+<arg>你购买了ipad，一共123件。</arg>
+</arguments>
+<status status="PASS" endtime="20180708 16:20:03.134" starttime="20180708 16:20:03.133"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>5.2，确认前端购物车信息正确</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.135" level="INFO">5.2，确认前端购物车信息正确</msg>
+<status status="PASS" endtime="20180708 16:20:03.135" starttime="20180708 16:20:03.134"></status>
+</kw>
+<kw name="Select Frame" library="SeleniumLibrary">
+<doc>Sets frame identified by ``locator`` as the current frame.</doc>
+<arguments>
+<arg>fra</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.136" level="INFO">Selecting frame 'fra'.</msg>
+<status status="PASS" endtime="20180708 16:20:03.191" starttime="20180708 16:20:03.135"></status>
+</kw>
+<kw name="Select From List By Label" library="SeleniumLibrary">
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<arguments>
+<arg>buy</arg>
+<arg>产品:ipad,数量:123</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.192" level="INFO">Selecting options from selection list 'buy' by label 产品:ipad,数量:123.</msg>
+<status status="PASS" endtime="20180708 16:20:03.260" starttime="20180708 16:20:03.191"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>5.3，确认后台数据库订单表信息正确</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.261" level="INFO">5.3，确认后台数据库订单表信息正确</msg>
+<status status="PASS" endtime="20180708 16:20:03.261" starttime="20180708 16:20:03.260"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>comment</arg>
+<arg>PAUSE</arg>
+</arguments>
+<status status="PASS" endtime="20180708 16:20:03.261" starttime="20180708 16:20:03.261"></status>
+</kw>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>30</arg>
+<arg>1</arg>
+<arg>Check If Exists In Database</arg>
+<arg>select * from scott.order_item where name='ipad' and quantity=123;</arg>
+</arguments>
+<kw name="Check If Exists In Database" library="DatabaseLibrary">
+<doc>Check if any row would be returned by given the input `selectStatement`. If there are no results, then this will</doc>
+<arguments>
+<arg>select * from scott.order_item where name='ipad' and quantity=123;</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.263" level="INFO">Executing : Check If Exists In Database  |  select * from scott.order_item where name='ipad' and quantity=123; </msg>
+<msg timestamp="20180708 16:20:03.263" level="INFO">Executing : Query  |  select * from scott.order_item where name='ipad' and quantity=123; </msg>
+<status status="PASS" endtime="20180708 16:20:03.265" starttime="20180708 16:20:03.263"></status>
+</kw>
+<status status="PASS" endtime="20180708 16:20:03.265" starttime="20180708 16:20:03.262"></status>
+</kw>
+<kw name="Check If Exists In Database" library="DatabaseLibrary">
+<doc>Check if any row would be returned by given the input `selectStatement`. If there are no results, then this will</doc>
+<arguments>
+<arg>select * from scott.order_item where name='ipad' and quantity=123;</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.266" level="INFO">Executing : Check If Exists In Database  |  select * from scott.order_item where name='ipad' and quantity=123; </msg>
+<msg timestamp="20180708 16:20:03.266" level="INFO">Executing : Query  |  select * from scott.order_item where name='ipad' and quantity=123; </msg>
+<status status="PASS" endtime="20180708 16:20:03.267" starttime="20180708 16:20:03.266"></status>
+</kw>
+<kw name="Row Count Is Equal To X" library="DatabaseLibrary">
+<doc>Check if the number of rows returned from `selectStatement` is equal to the value submitted. If not, then this</doc>
+<arguments>
+<arg>select * from scott.order_item where name='ipad' and quantity=123;</arg>
+<arg>${y}</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.268" level="INFO">Executing : Row Count Is Equal To X  |  select * from scott.order_item where name='ipad' and quantity=123;  |  1 </msg>
+<msg timestamp="20180708 16:20:03.269" level="INFO">Executing : Row Count  |  select * from scott.order_item where name='ipad' and quantity=123; </msg>
+<status status="PASS" endtime="20180708 16:20:03.270" starttime="20180708 16:20:03.268"></status>
+</kw>
+<kw name="Comment" library="BuiltIn">
+<doc>Displays the given messages in the log file as keyword arguments.</doc>
+<arguments>
+<arg>${x}</arg>
+<arg>Row Count</arg>
+<arg>select * from scott.order_item where name='ipad' and quantity=123;</arg>
+</arguments>
+<status status="PASS" endtime="20180708 16:20:03.271" starttime="20180708 16:20:03.270"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>6，点击付款</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.271" level="INFO">6，点击付款</msg>
+<status status="PASS" endtime="20180708 16:20:03.271" starttime="20180708 16:20:03.271"></status>
+</kw>
+<kw name="Unselect Frame" library="SeleniumLibrary">
+<doc>Sets the main frame as the current frame.</doc>
+<status status="PASS" endtime="20180708 16:20:03.274" starttime="20180708 16:20:03.272"></status>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks button identified by ``locator``.</doc>
+<arguments>
+<arg>付款</arg>
+</arguments>
+<msg timestamp="20180708 16:20:03.275" level="INFO">Clicking button '付款'.</msg>
+<status status="PASS" endtime="20180708 16:20:08.414" starttime="20180708 16:20:03.275"></status>
+</kw>
+<kw name="Handle Alert" library="SeleniumLibrary">
+<doc>Handles the current alert and returns its message.</doc>
+<arguments>
+<arg>ACCEPT</arg>
+</arguments>
+<status status="PASS" endtime="20180708 16:20:08.439" starttime="20180708 16:20:08.427"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>7，切换到付款窗口</arg>
+</arguments>
+<msg timestamp="20180708 16:20:08.442" level="INFO">7，切换到付款窗口</msg>
+<status status="PASS" endtime="20180708 16:20:08.442" starttime="20180708 16:20:08.441"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>2</arg>
+</arguments>
+<msg timestamp="20180708 16:20:10.445" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20180708 16:20:10.445" starttime="20180708 16:20:08.445"></status>
+</kw>
+<kw name="Get Window Handles" library="SeleniumLibrary">
+<doc>Return all current window handles as a list.</doc>
+<assign>
+<var>${x}</var>
+</assign>
+<msg timestamp="20180708 16:20:10.448" level="INFO">${x} = [u'CDwindow-CD08C086AB221EE74BE99F036B3AFAF3', u'CDwindow-0C38B8F2C197AAC320C18D42A63A592D']</msg>
+<status status="PASS" endtime="20180708 16:20:10.448" starttime="20180708 16:20:10.445"></status>
+</kw>
+<kw name="Select Window" library="SeleniumLibrary">
+<doc>Selects browser window matching ``locator``.</doc>
+<arguments>
+<arg>付款</arg>
+</arguments>
+<status status="PASS" endtime="20180708 16:20:11.587" starttime="20180708 16:20:10.449"></status>
+</kw>
+<kw name="Select Window" library="SeleniumLibrary">
+<doc>Selects browser window matching ``locator``.</doc>
+<arguments>
+<arg>${x[-1]}</arg>
+</arguments>
+<status status="PASS" endtime="20180708 16:20:11.615" starttime="20180708 16:20:11.588"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>8,输入银行卡号，完成付款</arg>
+</arguments>
+<msg timestamp="20180708 16:20:11.619" level="INFO">8,输入银行卡号，完成付款</msg>
+<status status="PASS" endtime="20180708 16:20:11.620" starttime="20180708 16:20:11.619"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>cardno</arg>
+<arg>111111111</arg>
+</arguments>
+<msg timestamp="20180708 16:20:11.621" level="INFO">Typing text '111111111' into text field 'cardno'.</msg>
+<status status="PASS" endtime="20180708 16:20:11.738" starttime="20180708 16:20:11.621"></status>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks button identified by ``locator``.</doc>
+<arguments>
+<arg>付款</arg>
+</arguments>
+<msg timestamp="20180708 16:20:11.740" level="INFO">Clicking button '付款'.</msg>
+<status status="PASS" endtime="20180708 16:20:11.837" starttime="20180708 16:20:11.739"></status>
+</kw>
+<kw name="Handle Alert" library="SeleniumLibrary">
+<doc>Handles the current alert and returns its message.</doc>
+<status status="PASS" endtime="20180708 16:20:11.848" starttime="20180708 16:20:11.838"></status>
+</kw>
+<kw name="Execute Sql String" library="DatabaseLibrary">
+<doc>Executes the sqlString as SQL commands. Useful to pass arguments to your sql. Set optional input `sansTran` to</doc>
+<arguments>
+<arg>DELETE FROM order_item where name='ipad' and quantity=123;</arg>
+</arguments>
+<msg timestamp="20180708 16:20:11.855" level="INFO">Executing : Execute SQL String  |  DELETE FROM order_item where name='ipad' and quantity=123; </msg>
+<status status="PASS" endtime="20180708 16:20:11.859" starttime="20180708 16:20:11.854"></status>
+</kw>
+<kw type="teardown" name="case_teardown">
+<kw name="Select Window" library="SeleniumLibrary">
+<doc>Selects browser window matching ``locator``.</doc>
+<status status="PASS" endtime="20180708 16:20:11.872" starttime="20180708 16:20:11.862"></status>
+</kw>
+<status status="PASS" endtime="20180708 16:20:11.872" starttime="20180708 16:20:11.861"></status>
+</kw>
+<doc>xxx购物车主要功能</doc>
+<tags>
+<tag>high</tag>
+</tags>
+<status status="PASS" endtime="20180708 16:20:11.873" critical="yes" starttime="20180708 16:19:56.579"></status>
+</test>
+<kw type="teardown" name="teardown" library="MT">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>恢复环境</arg>
+</arguments>
+<msg timestamp="20180708 16:20:11.877" level="INFO">恢复环境</msg>
+<status status="PASS" endtime="20180708 16:20:11.877" starttime="20180708 16:20:11.877"></status>
+</kw>
+<kw name="Disconnect From Database" library="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20180708 16:20:11.878" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" endtime="20180708 16:20:11.879" starttime="20180708 16:20:11.878"></status>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20180708 16:20:14.441" starttime="20180708 16:20:11.879"></status>
+</kw>
+<status status="PASS" endtime="20180708 16:20:14.441" starttime="20180708 16:20:11.876"></status>
+</kw>
+<status status="PASS" endtime="20180708 16:20:14.441" starttime="20180708 16:19:53.054"></status>
+</suite>
+<status status="PASS" endtime="20180708 16:20:14.446" starttime="20180708 16:19:53.019"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+<stat fail="0" pass="1">high</stat>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Mt" pass="1">Mt</stat>
+<stat fail="0" id="s1-s1" name="订单模块" pass="1">Mt.订单模块</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
